@@ -2,10 +2,19 @@
 
 <!-- [ngStyle]="{'color': item.rendu ? 'green' : 'red'}" -->
 
-<div 
+<!-- <div 
     *ngFor="let item of assignements"
     [ngClass]="{'rendu': item.rendu, 'non_rendu': !item.rendu}">
     <p *ngIf="item.rendu; else nonsoumis">
+        Devoir intitulé {{item.nom}}, rendu le {{item.dateRendu}}.
+    </p>
+    <ng-template #nonsoumis>
+        Le devoir {{item.nom}} n'a pas été rendu.
+    </ng-template>
+</div> -->
+
+<div *ngFor="let item of assignements">
+    <p appRendu *ngIf="item.rendu; else nonsoumis">
         Devoir intitulé {{item.nom}}, rendu le {{item.dateRendu}}.
     </p>
     <ng-template #nonsoumis>
