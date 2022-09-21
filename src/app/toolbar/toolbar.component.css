@@ -1,0 +1,8 @@
+mat-toolbar {
+    position: relative;
+}
+
+.connection-icon {
+    position: absolute;
+    right: 20px;
+}
