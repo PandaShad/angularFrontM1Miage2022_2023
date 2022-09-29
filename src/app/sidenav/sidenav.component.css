@@ -1,0 +1,16 @@
+
+
+.example-sidenav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 175px;
+  background: #d8eefe;
+}
+
+.mat-nav-list {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}

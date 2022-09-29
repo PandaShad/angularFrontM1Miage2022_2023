@@ -16,7 +16,13 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatMomentDateModule } from "@angular/material-moment-adapter";
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import { MatCardModule } from '@angular/material/card';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ToolbarComponent } from './toolbar/toolbar.component';
+import { SidenavComponent } from './sidenav/sidenav.component';
+import { AssignementDetailComponent } from './assignements/assignement-detail/assignement-detail.component';
+import { AddAssignementComponent } from './assignements/add-assignement/add-assignement.component';
 
 
 
@@ -28,7 +34,10 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
     AppComponent,
     AssignementsComponent,
     RenduDirective,
-    ToolbarComponent
+    ToolbarComponent,
+    SidenavComponent,
+    AssignementDetailComponent,
+    AddAssignementComponent
   ],
   imports: [
     BrowserModule,
@@ -42,6 +51,9 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
     MatMomentDateModule,
     MatToolbarModule,
     MatSidenavModule,
+    MatListModule,
+    MatCardModule,
+    MatCheckboxModule,
     FormsModule,
     AppRoutingModule,
   ],

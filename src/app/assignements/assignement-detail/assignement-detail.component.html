@@ -1,0 +1,16 @@
+<div class="container">
+    <mat-card *ngIf="assignement">
+        <mat-card-title>{{ assignement.nom }}</mat-card-title>
+        <mat-card-subtitle>{{ assignement.dateDelivery | date }}</mat-card-subtitle>
+        <mat-checkbox
+            *ngIf="!assignement.rendered"
+            (click)="onAssignementRendered()" 
+        >
+            Devoir rendu
+        </mat-checkbox>
+        <button 
+            class="deleteButton" 
+            color="accent"
+            (click)="onDeleteButtonClick()">Delete</button>
+    </mat-card>
+</div>

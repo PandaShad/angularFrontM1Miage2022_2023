@@ -1,0 +1,17 @@
+<mat-sidenav-container class="example-container">
+    <mat-sidenav 
+        #sidenav mode="side" 
+        opened 
+        class="example-sidenav"
+        [fixedInViewport]="true" 
+        [fixedTopGap]="0"
+        [fixedBottomGap]="0"
+    >
+    <mat-nav-list>
+        <mat-list-item 
+            role="listitem"
+            *ngFor="let item of navLinks"
+            (click)="naviguateTo(item.link)">{{ item.nom }}</mat-list-item>
+    </mat-nav-list>
+    </mat-sidenav>
+</mat-sidenav-container>

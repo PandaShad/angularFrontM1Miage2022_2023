@@ -1,8 +1,9 @@
 mat-toolbar {
     position: relative;
+    background-color: #fffffe;
 }
 
 .connection-icon {
     position: absolute;
-    right: 20px;
+    right: 80px;
 }

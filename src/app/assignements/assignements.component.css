@@ -1,13 +1,21 @@
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.addButton {
+    align-self: flex-end;
+}
+
 .rendu {
-    color: green;
+    color: #3da9fc
 }
 
 .non_rendu {
-    color: red;
+    color: #ef4565;
 }
 
-.form {
-    display: flex;
-    flex-direction: column;
-    margin: 5px;
+button {
+    background-color: #3da9fc;
+    color: #fffffe
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AssignementsService } from '../shared/assignements.service';
 import { Assignement } from './assignement.model';
 
 @Component({
@@ -8,48 +9,47 @@ import { Assignement } from './assignement.model';
 })
 export class AssignementsComponent implements OnInit {
 
-  assignements: Assignement[] = [
-    {
-      nom: "Devoir Angular",
-      dateDelivery: new Date('2022-10-10'),
-      rendered: false
-    },
-    {
-      nom: "Devoir Java",
-      dateDelivery: new Date('2022-10-10'),
-      rendered: true
-    },
-    {
-      nom: "Devoir R",
-      dateDelivery: new Date('2022-10-10'),
-      rendered: false
-    },
-    {
-      nom: "Devoir Ocaml",
-      dateDelivery: new Date('2022-10-10'),
-      rendered: true
-    },
-  ]
+  activeAssignement: Assignement;
+
+  assignements: Assignement[];
 
   addButtonActive = false;
-  assignementName = "";
-  dateDelivery: Date = new Date();
+  formVisible = false;
 
-  constructor() { }
+  constructor(
+    private assignementsService: AssignementsService,
+  ) { }
 
   ngOnInit(): void {
-    setTimeout(() => {
-      this.addButtonActive = true;
-    }, 2000);
+    // this.assignements = this.assignementsService.getAssignements();
+    this.getAssignements();
   }
 
-  onSubmit() {
-    const newAssignement = new Assignement();
-    newAssignement.nom = this.assignementName;
-    newAssignement.dateDelivery = this.dateDelivery;
-    newAssignement.rendered = false;
+  getAssignements(){
+    this.assignementsService.getAssignements()
+      .subscribe(res => this.assignements = res);
+  };
 
-    this.assignements.push(newAssignement);
+  selectAssignement(assignement: Assignement): void {
+    this.activeAssignement = assignement;
+    console.log(this.activeAssignement);
+  }
+
+  onAddAssignementButtonClick(): void {
+    this.formVisible = true;
+  }
+
+  onNewAssignement(event: Assignement) {
+    // this.assignements.push(event);
+    this.assignementsService.addAssignement(event)
+      .subscribe(message => console.log(message))
+    this.formVisible = false;
+  }
+
+  deleteAssignement(event: Assignement) {
+    // this.assignements = this.assignements.filter((e) => e != event);
+    this.assignementsService.deleteAssignement(event)
+      .subscribe(message => console.log(message));
   }
 
 }

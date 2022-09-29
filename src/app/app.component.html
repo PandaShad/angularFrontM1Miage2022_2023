@@ -1,6 +1,18 @@
-<app-toolbar></app-toolbar>
+<div class="main">
 
-<h1>Hello world !</h1>
-<p>{{title}}</p>
+    <div class="toolbar-container">
+        <app-toolbar></app-toolbar>
+    </div>
 
-<app-assignements></app-assignements>
+    <div class="side-navbar">
+        <app-sidenav></app-sidenav>
+    </div>
+
+    <div class="main-content">
+        <h1>{{title}}</h1>
+
+        <div class="app-assignements-container">
+            <app-assignements></app-assignements>
+        </div>
+    </div>
+</div>
