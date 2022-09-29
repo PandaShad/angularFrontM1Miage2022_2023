@@ -31,6 +31,7 @@ export class AssignementDetailComponent implements OnInit {
 
   onDeleteButtonClick(): void {
     this.assignementToDelete.emit(this.assignement);
+    this.assignement = null as any;
   }
 
 }

@@ -43,7 +43,8 @@ export class AssignementsService {
   }
 
   deleteAssignement(assignement: Assignement): Observable<string> {
-    this.assignements = this.assignements.filter((e) => e != assignement);
+    const pos = this.assignements.indexOf(assignement);
+    this.assignements.splice(pos, 1);
     return of(`Assignement deleted : ${assignement.nom}`);
   }
 
