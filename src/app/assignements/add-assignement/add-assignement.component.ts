@@ -1,4 +1,5 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AssignementsService } from 'src/app/shared/assignements.service';
 import { Assignement } from '../assignement.model';
 
 @Component({
@@ -8,13 +9,15 @@ import { Assignement } from '../assignement.model';
 })
 export class AddAssignementComponent implements OnInit {
 
-  @Output() newAssignementOutput = new EventEmitter<Assignement>();
+  // @Output() newAssignementOutput = new EventEmitter<Assignement>();
 
   assignementName: string = '';
   dateDelivery: Date;
   assignements: any;
 
-  constructor() { }
+  constructor(
+    private assignementsService: AssignementsService,
+  ) { }
 
   ngOnInit(): void {
   }
@@ -24,8 +27,12 @@ export class AddAssignementComponent implements OnInit {
     newAssignement.nom = this.assignementName;
     newAssignement.dateDelivery = this.dateDelivery;
     newAssignement.rendered = true;
+    newAssignement.id = 5;
+
+    this.assignementsService.addAssignement(newAssignement)
+      .subscribe(message => console.log(message));
 
     // this.assignements.push(newAssignement);
-    this.newAssignementOutput.emit(newAssignement);
+    // this.newAssignementOutput.emit(newAssignement);
   }
 }

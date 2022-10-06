@@ -1,6 +1,8 @@
 .container {
     display: flex;
     flex-direction: column;
+    margin-top: 64px;
+    margin-left: 175px;
 }
 
 .addButton {
@@ -18,4 +20,22 @@
 button {
     background-color: #3da9fc;
     color: #fffffe
+}
+
+.side-navbar {
+    position: absolute; 
+  }
+  
+.toolbar-container {
+  position: absolute;
+  width: 84%;
+  left: 175px;
+}
+
+.main-content {
+  margin-left: 20%;
+}
+
+h1 {
+  color: #094067;
 }

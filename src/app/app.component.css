@@ -4,21 +4,3 @@
   flex-direction: column;
   position: relative;
 }
-
-.side-navbar {
-  position: absolute; 
-}
-
-.toolbar-container {
-  position: absolute;
-  width: 84%;
-  left: 175px;
-}
-
-.main-content {
-  margin-left: 20%;
-}
-
-h1 {
-  color: #094067;
-}

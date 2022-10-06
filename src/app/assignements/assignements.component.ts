@@ -14,7 +14,6 @@ export class AssignementsComponent implements OnInit {
   assignements: Assignement[];
 
   addButtonActive = false;
-  formVisible = false;
 
   constructor(
     private assignementsService: AssignementsService,
@@ -35,16 +34,11 @@ export class AssignementsComponent implements OnInit {
     console.log(this.activeAssignement);
   }
 
-  onAddAssignementButtonClick(): void {
-    this.formVisible = true;
-  }
-
-  onNewAssignement(event: Assignement) {
-    // this.assignements.push(event);
-    this.assignementsService.addAssignement(event)
-      .subscribe(message => console.log(message))
-    this.formVisible = false;
-  }
+  // onNewAssignement(event: Assignement) {
+  //   // this.assignements.push(event);
+  //   this.assignementsService.addAssignement(event)
+  //     .subscribe(message => console.log(message))
+  // }
 
   deleteAssignement(event: Assignement) {
     // this.assignements = this.assignements.filter((e) => e != event);

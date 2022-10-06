@@ -10,33 +10,34 @@
         Le devoir {{item.nom}} n'a pas été rendu.
     </ng-template>
 </div> -->
-<main class="container" *ngIf="!formVisible">
+
+<div class="toolbar-container">
+    <app-toolbar></app-toolbar>
+</div>
+
+<div class="side-navbar">
+    <app-sidenav></app-sidenav>
+</div>
+
+<main class="container">
     <button
         class="addButton"
         mat-flat-button color ='accent'
-        (click)="onAddAssignementButtonClick()"> 
+        routerLink="/add"> 
             Ajouter Assignement 
     </button>
     <mat-list *ngFor="let item of assignements">
-        <h3 mat-subheader>{{ item.dateDelivery | date }}</h3>
-        <mat-list-item (click)="selectAssignement(item)">
-            <p appRendu *ngIf="item.rendered; else nonsoumis">
-                Devoir intitulé {{item.nom}}, rendu le {{item.dateDelivery | date }}.
-            </p>
-            <ng-template #nonsoumis>
-                <label class="non_rendu">Le devoir {{item.nom}} n'a pas été rendu.</label>
-            </ng-template>
-            <mat-divider></mat-divider>
-        </mat-list-item>
+        <nav><a routerLink="/assignement/{{item.id}}">
+            <h3 mat-subheader>{{ item.dateDelivery | date }}</h3>
+            <mat-list-item (click)="selectAssignement(item)">
+                <p appRendu *ngIf="item.rendered; else nonsoumis">
+                    Devoir intitulé {{item.nom}}, rendu le {{item.dateDelivery | date }}.
+                </p>
+                <ng-template #nonsoumis>
+                    <label class="non_rendu">Le devoir {{item.nom}} n'a pas été rendu.</label>
+                </ng-template>
+                <mat-divider></mat-divider>
+            </mat-list-item>
+        </a></nav>
     </mat-list>
-    <app-assignement-detail
-        [assignement]="activeAssignement"
-        (assignementToDelete)="deleteAssignement($event)">
-    </app-assignement-detail>
 </main>
-
-<app-add-assignement 
-    *ngIf="formVisible"
-    (newAssignementOutput)="onNewAssignement($event)"
-    >
-</app-add-assignement>

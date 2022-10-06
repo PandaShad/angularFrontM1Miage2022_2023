@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SideNavService } from '../shared/sidenav.service';
 
 @Component({
   selector: 'app-toolbar',

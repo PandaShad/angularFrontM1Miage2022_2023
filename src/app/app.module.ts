@@ -23,11 +23,7 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { AssignementDetailComponent } from './assignements/assignement-detail/assignement-detail.component';
 import { AddAssignementComponent } from './assignements/add-assignement/add-assignement.component';
-
-
-
-
-
+import { EditAssignementComponent } from './edit-assignement/edit-assignement.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +33,8 @@ import { AddAssignementComponent } from './assignements/add-assignement/add-assi
     ToolbarComponent,
     SidenavComponent,
     AssignementDetailComponent,
-    AddAssignementComponent
+    AddAssignementComponent,
+    EditAssignementComponent
   ],
   imports: [
     BrowserModule,
