@@ -3,6 +3,7 @@ import { AssignementsService } from 'src/app/shared/assignements.service';
 import { Assignement } from '../assignement.model';
 import { ActivatedRoute, Router } from '@angular/router'
 import { NgSelectOption } from '@angular/forms';
+import { AuthService } from 'src/app/shared/auth.service';
 
 @Component({
   selector: 'app-assignement-detail',
@@ -21,6 +22,7 @@ export class AssignementDetailComponent implements OnInit {
     private assignementsService: AssignementsService,
     private route: ActivatedRoute,
     private router: Router,
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
@@ -30,11 +32,7 @@ export class AssignementDetailComponent implements OnInit {
   getAssignement() {
     const id = this.route.snapshot.params['id'];
     this.assignementsService.getAssignementById(parseInt(id))
-      .subscribe(assignement => {
-        this.assignement = assignement;
-        console.log('ID', id);
-        console.log('KOUKOU : ', this.assignement)
-      })
+      .subscribe(assignement => this.assignement = assignement)
 
   }
 
@@ -50,6 +48,14 @@ export class AssignementDetailComponent implements OnInit {
     this.assignementsService.deleteAssignement(this.assignement)
       .subscribe(message => console.log(message));
     this.router.navigate(['/home']);
+  }
+
+  onClickEdit(): void {
+    this.router.navigate(['/assignement', this.assignement.id, 'edit'], {queryParams: {nom: this.assignement.nom}, fragment:'edition'});
+  }
+
+  isAdmin(): boolean {
+    return this.authService.loggedIn;
   }
 
 }

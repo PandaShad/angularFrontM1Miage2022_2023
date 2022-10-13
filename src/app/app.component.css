@@ -4,3 +4,19 @@
   flex-direction: column;
   position: relative;
 }
+
+mat-toolbar {
+  position: relative;
+  background-color: #fffffe;
+}
+
+.connection-icon {
+  position: absolute;
+  right: 80px;
+}
+
+button {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}

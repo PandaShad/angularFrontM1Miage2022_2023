@@ -19,6 +19,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { AssignementDetailComponent } from './assignements/assignement-detail/assignement-detail.component';
@@ -51,6 +52,7 @@ import { EditAssignementComponent } from './edit-assignement/edit-assignement.co
     MatListModule,
     MatCardModule,
     MatCheckboxModule,
+    MatSlideToggleModule,
     FormsModule,
     AppRoutingModule,
   ],

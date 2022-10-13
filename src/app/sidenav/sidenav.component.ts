@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatSidenav } from '@angular/material/sidenav';
 import { Router } from '@angular/router';
 import { NavLinks } from './navLinks.model';
 
@@ -9,6 +10,8 @@ import { NavLinks } from './navLinks.model';
 })
 
 export class SidenavComponent implements OnInit {
+  
+  @ViewChild('sidenav') public sidenav: MatSidenav;
 
   navLinks: NavLinks[] = [
     {
@@ -44,6 +47,11 @@ export class SidenavComponent implements OnInit {
   naviguateTo(link: string): void {
     this.router.navigateByUrl(link);
     console.log('Will naviguate to', link);
+  }
+
+  toggle(): void {
+    console.log('KOUKOU');
+    this.sidenav.toggle();
   }
   
 }

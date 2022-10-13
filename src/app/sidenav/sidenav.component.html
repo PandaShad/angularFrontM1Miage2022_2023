@@ -1,10 +1,9 @@
 <mat-sidenav-container class="example-container">
-    <mat-sidenav 
-        #sidenav mode="side" 
-        opened 
+    <mat-sidenav #sidenav 
         class="example-sidenav"
+        mode="side"
         [fixedInViewport]="true" 
-        [fixedTopGap]="0"
+        [fixedTopGap]="64"
         [fixedBottomGap]="0"
     >
     <mat-nav-list>
@@ -14,4 +13,7 @@
             (click)="naviguateTo(item.link)">{{ item.nom }}</mat-list-item>
       </mat-nav-list>
     </mat-sidenav>
+    <mat-sidenav-content>
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
 </mat-sidenav-container>
