@@ -38,16 +38,20 @@ export class AssignementDetailComponent implements OnInit {
 
   onAssignementRendered(): void {
     // this.assignement.dateDelivery = new Date();
-    this.assignement.rendered = true;
+    this.assignement.rendu = true;
     this.assignementsService.updateAssignement(this.assignement)
-      .subscribe(message => console.log(message));
-    this.router.navigate(['/home']);
+      .subscribe(message => {
+        console.log(message);
+        this.router.navigate(['/home']);
+      });
   }
 
   onDeleteButtonClick(): void {
     this.assignementsService.deleteAssignement(this.assignement)
-      .subscribe(message => console.log(message));
-    this.router.navigate(['/home']);
+      .subscribe(message => {
+        console.log(message);
+        this.router.navigate(['/home']);
+      });
   }
 
   onClickEdit(): void {

@@ -1,9 +1,28 @@
 import { Injectable } from '@angular/core';
+import { User } from './user.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+
+  users: User[] = [
+    {
+    login: 'admin',
+    password: 'admin',
+    role: 'admin'
+    },
+    {
+      login: 'LilShad',
+      password: '123',
+      role: 'admin'
+    },
+    {
+      login: 'test.user',
+      password: '123',
+      role: 'user'
+    },
+  ]
 
   loggedIn: boolean = false;
 
@@ -17,12 +36,21 @@ export class AuthService {
     this.loggedIn = false;
   }
 
-  isAdmin(){
+  isAdmin(user: User){
     const isUserAdmin = new Promise<boolean>(
+      (resolve, reject) => {
+        resolve(user.role === 'admin');
+      }
+    );
+    return isUserAdmin;
+  }
+
+  isLogged(){
+    const isLogged = new Promise<boolean>(
       (resolve, reject) => {
         resolve(this.loggedIn);
       }
     );
-    return isUserAdmin;
+    return isLogged;
   }
 }

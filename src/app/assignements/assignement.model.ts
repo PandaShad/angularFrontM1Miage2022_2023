@@ -1,6 +1,7 @@
 export class Assignement {
-    id!: number;
+    _id?: string;
+    id: number;
     nom!: string;
-    dateDelivery!: Date;
-    rendered!: boolean;
+    dateDeRendu!: Date;
+    rendu!: boolean;
 }

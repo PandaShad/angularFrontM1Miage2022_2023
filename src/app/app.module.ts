@@ -25,6 +25,8 @@ import { SidenavComponent } from './sidenav/sidenav.component';
 import { AssignementDetailComponent } from './assignements/assignement-detail/assignement-detail.component';
 import { AddAssignementComponent } from './assignements/add-assignement/add-assignement.component';
 import { EditAssignementComponent } from './edit-assignement/edit-assignement.component';
+import { LoginComponent } from './login/login.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,8 @@ import { EditAssignementComponent } from './edit-assignement/edit-assignement.co
     SidenavComponent,
     AssignementDetailComponent,
     AddAssignementComponent,
-    EditAssignementComponent
+    EditAssignementComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -55,6 +58,7 @@ import { EditAssignementComponent } from './edit-assignement/edit-assignement.co
     MatSlideToggleModule,
     FormsModule,
     AppRoutingModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
