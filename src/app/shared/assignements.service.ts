@@ -1,13 +1,21 @@
 import { Injectable } from '@angular/core';
 import { Assignement } from '../assignements/assignement.model';
-import { Observable, of } from 'rxjs';
+import { catchError, forkJoin, map, Observable, of, tap } from 'rxjs';
 import { LoggingService } from './logging.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+
+import { data } from './data';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AssignementsService {
+
+  private httpOptions = {
+    headers: new HttpHeaders({
+      'Content-type': 'application/json'
+    })
+  };
   
   assignements: Assignement[] = [
     // {
@@ -43,16 +51,24 @@ export class AssignementsService {
 
   uri = "http://localhost:8010/api/assignments";
 
-  getAssignements(): Observable<Assignement[]> {
-    return this.http.get<Assignement[]>(this.uri)
+  getAssignements(): Observable<any> {
+    return this.http.get<any>(this.uri);
     // return of(this.assignements);
+  }
+
+  getAssignmentsPagine(page: number, limit: number): Observable<any> {
+    const queryParams = {
+      page: page,
+      limit: limit
+    }
+    return this.http.get<any>(this.uri,{params: queryParams});
   }
 
   addAssignement(assignement: Assignement): Observable<any> {
     // this.assignements.push(assignement);
     this.loggingService.log(assignement, 'ajouté');
     // return of(`Assignement added : ${assignement.nom}`);
-    return this.http.post<Assignement>(this.uri, assignement);
+    return this.http.post<Assignement>(this.uri, assignement, this.httpOptions);
   }
 
   deleteAssignement(assignement: Assignement): Observable<any> {
@@ -74,5 +90,30 @@ export class AssignementsService {
   getAssignementById(id: number): Observable<Assignement> {
     // return of(this.assignements.find(assignement => assignement.id === id) as Assignement);
     return  this.http.get<Assignement>(this.uri + '/' + id)
+      .pipe(map(a => {
+        a.nom += ' transformé avec un pipe....';
+        return a;
+      }),
+      tap(_ => {
+        console.log(`tap: assignement id = ${id} requête GET envoyée sur mongoDB cloud`);
+      }),
+      catchError(this.handleError<any>('### catchError: getAssignments by id avec id=' + id)));
   }
+
+  private handleError<T>(operation: any, result?: T) {
+    return (error: any): Observable<T> => {
+      console.log(error);
+      console.log(operation + ' a échoué ' + error.message);
+      return of(result as T);
+    }
+ };
+
+ peuplerDb() {
+  const appelsVersAddAssigment: any = [];
+  data.forEach(e => {
+    appelsVersAddAssigment.push(this.addAssignement(e));
+  });
+  return forkJoin(appelsVersAddAssigment);
+ }
+ 
 }

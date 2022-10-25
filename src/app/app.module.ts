@@ -20,6 +20,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { AssignementDetailComponent } from './assignements/assignement-detail/assignement-detail.component';
@@ -56,6 +57,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatCardModule,
     MatCheckboxModule,
     MatSlideToggleModule,
+    MatPaginatorModule,
     FormsModule,
     AppRoutingModule,
     HttpClientModule,

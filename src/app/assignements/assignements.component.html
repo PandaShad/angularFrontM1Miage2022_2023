@@ -32,4 +32,18 @@
             </mat-list-item>
         </a></nav>
     </mat-list>
+
+    <mat-paginator
+        [length]="totalDocs"
+        [pageSize]="limit"
+        [pageSizeOptions]="[10, 25, 50]"
+        (page)="updatePage($event)"
+        aria-label="Select page" >
+    </mat-paginator>
+
+    <button
+        mat-stroked-button
+        (click)="peuplerDB()"
+        color="primary"> Peupler DB
+    </button>
 </main>
