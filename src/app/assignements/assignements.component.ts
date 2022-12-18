@@ -39,7 +39,6 @@ export class AssignementsComponent implements OnInit {
     this.assignementsService.getAssignements()
       .subscribe(res => {
         this.assignements = res.docs;
-        console.log('TAMER', this.assignements);
       });
   };
 
@@ -74,6 +73,7 @@ export class AssignementsComponent implements OnInit {
         this.nextPage = data.nextPage;
       });
   }
+
   updatePage(event: any) {
     this.getDataByPage(event.pageIndex + 1, event.pageSize);
   }
