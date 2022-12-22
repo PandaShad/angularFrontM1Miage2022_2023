@@ -1,15 +1,22 @@
-<form ngForm #assignementForm class="form">
-    <mat-form-field>
-        <input matInput name="Login" placeholder="Nom d'utilisateur" required>
-    </mat-form-field>
-    <mat-form-field>
-        <input matInput name="Password" placeholder="Mot de passe" required [type]="hide ? 'password' : 'text'">
-        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-        </button>
-    </mat-form-field>
-
-    <button mat-stroked-button routerLink="/home">
-        Se connecter
-    </button>
-</form>
+<main>
+    <div class="login-section">
+        <h1 class="login-title">Login to Your Account</h1>
+        <p class="login-description">Login using your Email and Password</p>
+        <mat-divider></mat-divider>
+        <form ngForm #assignementForm class="form">
+            <mat-form-field>
+                <input matInput name="Login" placeholder="Nom d'utilisateur" required>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput name="Password" placeholder="Mot de passe" required [type]="hide ? 'password' : 'text'">
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+            </mat-form-field>
+    
+            <button mat-stroked-button routerLink="/home">
+                Se connecter
+            </button>
+        </form>
+    </div>
+</main>
