@@ -28,6 +28,7 @@ import { AddAssignementComponent } from './assignements/add-assignement/add-assi
 import { EditAssignementComponent } from './edit-assignement/edit-assignement.component';
 import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
+import {MatSelectModule} from "@angular/material/select";
 
 @NgModule({
   declarations: [
@@ -41,27 +42,28 @@ import { HttpClientModule } from '@angular/common/http';
     EditAssignementComponent,
     LoginComponent
   ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    MatButtonModule,
-    MatIconModule,
-    MatDividerModule,
-    MatInputModule,
-    MatFormFieldModule,
-    MatDatepickerModule,
-    MatMomentDateModule,
-    MatToolbarModule,
-    MatSidenavModule,
-    MatListModule,
-    MatCardModule,
-    MatCheckboxModule,
-    MatSlideToggleModule,
-    MatPaginatorModule,
-    FormsModule,
-    AppRoutingModule,
-    HttpClientModule,
-  ],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        MatButtonModule,
+        MatIconModule,
+        MatDividerModule,
+        MatInputModule,
+        MatFormFieldModule,
+        MatDatepickerModule,
+        MatMomentDateModule,
+        MatToolbarModule,
+        MatSidenavModule,
+        MatListModule,
+        MatCardModule,
+        MatCheckboxModule,
+        MatSlideToggleModule,
+        MatPaginatorModule,
+        FormsModule,
+        AppRoutingModule,
+        HttpClientModule,
+        MatSelectModule,
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

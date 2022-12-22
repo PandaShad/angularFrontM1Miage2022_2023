@@ -3,11 +3,38 @@
         <input matInput [(ngModel)]="assignementName" name="name" placeholder="Nom du devoir" required>
     </mat-form-field>
 
+  <mat-form-field>
+    <input matInput [(ngModel)]="auteur" name="auteur" placeholder="auteur" required>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>matiere</mat-label>
+    <mat-select>
+      <mat-option *ngFor="let mat of matieres" name="matieres" [(ngModel)]="matiere">
+        {{mat}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>note</mat-label>
+    <mat-select>
+      <mat-option *ngFor="let n of notes" name="notes" [(ngModel)]="note">
+        {{n}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>remarque</mat-label>
+    <textarea matInput placeholder="remarque" [(ngModel)]="remarque"></textarea>
+  </mat-form-field>
+
     <p>{{ assignementName }}</p>
 
     <mat-form-field appearance="fill">
-        <input 
-            matInput 
+        <input
+            matInput
             [matDatepicker]="picker"
             placeholder="Date de rendu"
             [(ngModel)]="dateDelivery" name="date" required>

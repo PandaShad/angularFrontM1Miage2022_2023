@@ -4,7 +4,7 @@ import { catchError, forkJoin, map, Observable, of, tap } from 'rxjs';
 import { LoggingService } from './logging.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { data } from './data';
+//import { data } from './data';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +16,7 @@ export class AssignementsService {
       'Content-type': 'application/json'
     })
   };
-  
+
   assignements: Assignement[] = [
     // {
     //   id: 1,
@@ -49,8 +49,10 @@ export class AssignementsService {
     private http: HttpClient,
   ) { }
 
-  // uri = "http://localhost:8010/api/assignments";
-  uri = "https://api-cours-angular-2022.herokuapp.com/api/assignments";
+  uri = "http://localhost:8010/api/assignments";
+  //uri = "https://api-cours-angular-2022.herokuapp.com/api/assignments";
+  //uri ="mongodb+srv://Lilshad:741852963Katinart@cluster0.uchidfe.mongodb.net/test"
+  //uri = "mongodb+srv://admin:admin@cluster0.tjkzgnb.mongodb.net/assignments?retryWrites=true&w=majority"
 
   getAssignements(): Observable<any> {
     return this.http.get<any>(this.uri);
@@ -109,12 +111,13 @@ export class AssignementsService {
     }
  };
 
- peuplerDb() {
+/* peuplerDb() {
   const appelsVersAddAssigment: any = [];
   data.forEach(e => {
     appelsVersAddAssigment.push(this.addAssignement(e));
   });
   return forkJoin(appelsVersAddAssigment);
  }
- 
+ */
+
 }

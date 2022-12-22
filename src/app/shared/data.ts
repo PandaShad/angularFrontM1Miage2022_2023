@@ -1,4 +1,4 @@
-import { Assignement } from "../assignements/assignement.model";
+/*import { Assignement } from "../assignements/assignement.model";
 
 export const data: Assignement[] = [{"id":1,"nom":"Anglais","dateDeRendu":new Date("1656024735000"),"rendu":true},
 {"id":2,"nom":"Communication for Business","dateDeRendu":new Date("1641740952000"),"rendu":false},
@@ -499,4 +499,4 @@ export const data: Assignement[] = [{"id":1,"nom":"Anglais","dateDeRendu":new Da
 {"id":497,"nom":"La communication: outil de management","dateDeRendu":new Date("1654671973000"),"rendu":true},
 {"id":498,"nom":"Planification Projet","dateDeRendu":new Date("1647828313000"),"rendu":true},
 {"id":499,"nom":"Mathématiques pour le Big Data","dateDeRendu":new Date("1651236431000"),"rendu":true},
-{"id":500,"nom":"Outils pour l'Ingénierie des Besoins","dateDeRendu":new Date("1651843315000"),"rendu":true}]
+{"id":500,"nom":"Outils pour l'Ingénierie des Besoins","dateDeRendu":new Date("1651843315000"),"rendu":true}]*/
