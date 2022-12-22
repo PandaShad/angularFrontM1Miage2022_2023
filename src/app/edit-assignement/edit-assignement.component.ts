@@ -6,7 +6,7 @@ import { AssignementsService } from '../shared/assignements.service';
 @Component({
  selector: 'app-edit-assignment',
  templateUrl: './edit-assignement.component.html',
- styleUrls: ['./edit-assignement.component.css'],
+ styleUrls: ['./edit-assignement.component.scss'],
 })
 export class EditAssignementComponent implements OnInit {
  assignment!: Assignement | undefined;

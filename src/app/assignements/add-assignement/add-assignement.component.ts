@@ -5,7 +5,7 @@ import { Assignement } from '../assignement.model';
 @Component({
   selector: 'app-add-assignement',
   templateUrl: './add-assignement.component.html',
-  styleUrls: ['./add-assignement.component.css']
+  styleUrls: ['./add-assignement.component.scss']
 })
 export class AddAssignementComponent implements OnInit {
 

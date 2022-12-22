@@ -8,7 +8,7 @@ import { AuthService } from 'src/app/shared/auth.service';
 @Component({
   selector: 'app-assignement-detail',
   templateUrl: './assignement-detail.component.html',
-  styleUrls: ['./assignement-detail.component.css']
+  styleUrls: ['./assignement-detail.component.scss']
 })
 export class AssignementDetailComponent implements OnInit {
   
