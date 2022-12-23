@@ -10,8 +10,8 @@
   <mat-form-field appearance="fill">
     <mat-label>matiere</mat-label>
     <mat-select [(ngModel)]="matiere" name="matiere">
-      <mat-option *ngFor="let matiere of matieres" [value]="matiere">
-        {{matiere}}
+      <mat-option *ngFor="let matiere of matieres" [value]="matiere.nom">
+        {{matiere.nom}}
       </mat-option>
     </mat-select>
   </mat-form-field>
