@@ -9,28 +9,26 @@
 
   <mat-form-field appearance="fill">
     <mat-label>matiere</mat-label>
-    <mat-select>
-      <mat-option *ngFor="let mat of matieres" name="matieres" [(ngModel)]="matiere">
-        {{mat}}
+    <mat-select [(ngModel)]="matiere" name="matiere">
+      <mat-option *ngFor="let matiere of matieres" [value]="matiere">
+        {{matiere}}
       </mat-option>
     </mat-select>
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>note</mat-label>
-    <mat-select>
-      <mat-option *ngFor="let n of notes" name="notes" [(ngModel)]="note">
-        {{n}}
+    <mat-select [(ngModel)]="note" name="note">
+      <mat-option *ngFor="let note of notes" [value]="note">
+        {{note}}
       </mat-option>
     </mat-select>
   </mat-form-field>
 
   <mat-form-field class="example-full-width">
     <mat-label>remarque</mat-label>
-    <textarea matInput placeholder="remarque" [(ngModel)]="remarque"></textarea>
+    <textarea matInput placeholder="remarque" [(ngModel)]="remarque" name="remarque"></textarea>
   </mat-form-field>
-
-    <p>{{ assignementName }}</p>
 
     <mat-form-field appearance="fill">
         <input
