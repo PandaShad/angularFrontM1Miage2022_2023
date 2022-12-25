@@ -10,3 +10,4 @@ export class Assignement {
   note!: number;
   remarque!: string;
 }
+

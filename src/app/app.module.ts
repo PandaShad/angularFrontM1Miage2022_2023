@@ -29,6 +29,7 @@ import { EditAssignementComponent } from './edit-assignement/edit-assignement.co
 import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import {MatSelectModule} from "@angular/material/select";
+import {MatTableModule} from "@angular/material/table";
 
 @NgModule({
   declarations: [
@@ -63,6 +64,7 @@ import {MatSelectModule} from "@angular/material/select";
         AppRoutingModule,
         HttpClientModule,
         MatSelectModule,
+        MatTableModule,
     ],
   providers: [],
   bootstrap: [AppComponent]

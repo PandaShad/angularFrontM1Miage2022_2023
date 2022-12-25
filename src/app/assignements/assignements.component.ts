@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild} from '@angular/core';
 import { Router } from '@angular/router';
 import { AssignementsService } from '../shared/assignements.service';
 import { Assignement } from './assignement.model';
+import {MatTableDataSource} from "@angular/material/table";
+import {MatPaginator} from "@angular/material/paginator";
+import {MatSort} from "@angular/material/sort";
 
 @Component({
   selector: 'app-assignements',
@@ -10,6 +13,10 @@ import { Assignement } from './assignement.model';
 })
 export class AssignementsComponent implements OnInit {
 
+  displayedColumns: string[] = ['nom', 'auteur', 'matiere'];
+  dataSource: MatTableDataSource<Assignement>;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
   page: number = 1;
   limit: number = 10;
   totalDocs: number;
@@ -28,11 +35,22 @@ export class AssignementsComponent implements OnInit {
   constructor(
     private assignementsService: AssignementsService,
     private router: Router,
-  ) { }
+  ) {}
+
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
 
   ngOnInit(): void {
     this.getDataByPage(this.page, this.limit);
-    // this.getAssignements();
+    //this.getAssignements();
+
   }
 
   getAssignements(){
@@ -71,6 +89,9 @@ export class AssignementsComponent implements OnInit {
         this.prevPage = data.prevPage;
         this.hasNextPage = data.hasNextPage;
         this.nextPage = data.nextPage;
+        this.dataSource = new MatTableDataSource(this.assignements);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
       });
   }
 
@@ -87,4 +108,5 @@ export class AssignementsComponent implements OnInit {
     //   })
   }
 
+  //////////////////////////////////////////
 }
