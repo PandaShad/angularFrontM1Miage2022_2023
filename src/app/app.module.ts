@@ -20,6 +20,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
 import {MatTableModule} from '@angular/material/table';
+import {MatSelectModule} from "@angular/material/select";
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -62,6 +63,7 @@ import { ErrorDialogComponent } from './error-dialog/error-dialog.component';
     MatListModule,
     MatCardModule,
     MatCheckboxModule,
+    MatSelectModule,
     MatSlideToggleModule,
     MatPaginatorModule,
     MatDialogModule,

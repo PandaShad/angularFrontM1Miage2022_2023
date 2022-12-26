@@ -4,8 +4,6 @@ import { catchError, forkJoin, map, Observable, of, tap } from 'rxjs';
 import { LoggingService } from './logging.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { data } from './data';
-
 @Injectable({
   providedIn: 'root'
 })
@@ -84,12 +82,12 @@ export class AssignementsService {
     }
  };
 
- peuplerDb() {
-  const appelsVersAddAssigment: any = [];
-  data.forEach(e => {
-    appelsVersAddAssigment.push(this.addAssignement(e));
-  });
-  return forkJoin(appelsVersAddAssigment);
- }
+//  peuplerDb() {
+//   const appelsVersAddAssigment: any = [];
+//   data.forEach(e => {
+//     appelsVersAddAssigment.push(this.addAssignement(e));
+//   });
+//   return forkJoin(appelsVersAddAssigment);
+//  }
  
 }
