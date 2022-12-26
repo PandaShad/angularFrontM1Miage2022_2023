@@ -9,7 +9,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { AssignementsComponent } from './assignements/assignements.component';
 import { RenduDirective } from './shared/rendu.directive';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -18,6 +18,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
+import { MatDialogModule } from '@angular/material/dialog';
+import {MatTableModule} from '@angular/material/table';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -28,6 +30,8 @@ import { AddAssignementComponent } from './assignements/add-assignement/add-assi
 import { EditAssignementComponent } from './edit-assignement/edit-assignement.component';
 import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
+import { SignupComponent } from './signup/signup.component';
+import { ErrorDialogComponent } from './error-dialog/error-dialog.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +43,9 @@ import { HttpClientModule } from '@angular/common/http';
     AssignementDetailComponent,
     AddAssignementComponent,
     EditAssignementComponent,
-    LoginComponent
+    LoginComponent,
+    SignupComponent,
+    ErrorDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -58,7 +64,10 @@ import { HttpClientModule } from '@angular/common/http';
     MatCheckboxModule,
     MatSlideToggleModule,
     MatPaginatorModule,
+    MatDialogModule,
+    MatTableModule,
     FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule,
   ],

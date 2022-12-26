@@ -19,13 +19,13 @@ export class ToolbarComponent implements OnInit {
   }
 
   login() {
-    if(!this.authService.loggedIn) {
-      this.authService.logIn();
-    } else {
-      this.authService.logOut();
-      this.router.navigate(['/home']);
-    }
-    console.log(this.authService.loggedIn)
+    // if(!this.authService.loggedIn) {
+    //   this.authService.logIn();
+    // } else {
+    //   this.authService.logOut();
+    //   this.router.navigate(['/home']);
+    // }
+    // console.log(this.authService.loggedIn)
   }
 
 }

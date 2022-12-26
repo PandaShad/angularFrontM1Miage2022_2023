@@ -1,4 +1,7 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { LoginRequest } from './types';
 import { User } from './user.model';
 
 @Injectable({
@@ -6,30 +9,31 @@ import { User } from './user.model';
 })
 export class AuthService {
 
-  users: User[] = [
-    {
-    login: 'admin',
-    password: 'admin',
-    role: 'admin'
-    },
-    {
-      login: 'LilShad',
-      password: '123',
-      role: 'admin'
-    },
-    {
-      login: 'test.user',
-      password: '123',
-      role: 'user'
-    },
-  ]
+  private httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  };
+
+  users: User[] = []
+  uri = "http://localhost:8010/api/auth";
 
   loggedIn: boolean = false;
 
-  constructor() { }
+  constructor(
+    private http: HttpClient
+  ) { }
 
-  logIn(){
-    this.loggedIn = true; 
+  signupUser(first_name: string, last_name: string, email: string, password: string): Observable<any> {
+    const queryParams = {
+      first_name: first_name,
+      last_name: last_name,
+      email: email,
+      password: password
+    }
+    return this.http.post<any>(`${this.uri}/register`, queryParams, this.httpOptions);
+  }
+
+  logIn(queryParams: LoginRequest): Observable<any> {
+    return this.http.post<any>(`${this.uri}/login`, queryParams, this.httpOptions);
   }
 
   logOut(){

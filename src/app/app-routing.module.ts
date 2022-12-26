@@ -6,6 +6,7 @@ import { AssignementsComponent } from './assignements/assignements.component';
 import { EditAssignementComponent } from './edit-assignement/edit-assignement.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './shared/auth.guard';
+import { SignupComponent } from './signup/signup.component';
 
 const routes: Routes = [
   {
@@ -32,6 +33,10 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent
+  },
+  {
+    path: 'signup',
+    component: SignupComponent
   }
 ]
 

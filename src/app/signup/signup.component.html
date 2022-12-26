@@ -1,0 +1,81 @@
+<main>
+    <div class="left-side">
+        <h1>Assignement App</h1>
+        <div>
+            <h2>Lorem Ipsum</h2>
+            <p>Lorem Ipsum in dolor</p>
+        </div>
+        <div>
+            <h2>Lorem Ipsum</h2>
+            <p>Lorem Ipsum in dolor</p>
+        </div>
+        <div>
+            <h2>Lorem Ipsum</h2>
+            <p>Lorem Ipsum in dolor</p>
+        </div>
+        <div>
+            <h2>Lorem Ipsum</h2>
+            <p>Lorem Ipsum in dolor</p>
+        </div>
+    </div>
+    <div class="right-side">
+        <h1>{{!isSuccesfull ? 'Join us' : 'Welcome on Board !'}}</h1>
+        <form *ngIf="!isSuccesfull" #signupForm="ngForm" class="form">
+            <mat-form-field>
+                <input 
+                    matInput name="FirstName" 
+                    placeholder="First Name" 
+                    required 
+                    [(ngModel)]="firstName">
+            </mat-form-field>
+            <mat-form-field class="form-group">
+                <input 
+                    matInput 
+                    name="LastName" 
+                    placeholder="Last Name" 
+                    required 
+                    [(ngModel)]="lastName">
+            </mat-form-field>
+            <mat-form-field class="form-group">
+                <input
+                type="email"
+                matInput 
+                name="Login" 
+                placeholder="Email Address" 
+                required
+                [(ngModel)]="email">
+            </mat-form-field>
+            <mat-form-field class="form-group">
+                <input 
+                    matInput 
+                    name="Password" 
+                    placeholder="Password" 
+                    required 
+                    [(ngModel)]="password" 
+                    [type]="hide ? 'password' : 'text'">
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+            </mat-form-field>
+    
+            <button 
+                [disabled]="!signupForm.valid" 
+                class="signup-button" 
+                mat-stroked-button
+                (click)="onSubmit();"
+            >
+                Sign Up
+            </button>
+            <div 
+                class="alert alert-warning" 
+                *ngIf="signupForm.submitted && isSignUpFailed"
+            >
+                Signup failed!<br />{{ errorMessage }}
+              </div>
+        </form>
+        <div class="alert alert-success" *ngIf="isSuccesfull">
+            Your registration is successful!
+            <a routerLink="/login">Click here to Login</a>
+        </div>
+    </div> 
+</main>

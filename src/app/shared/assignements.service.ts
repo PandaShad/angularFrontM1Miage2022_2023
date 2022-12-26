@@ -17,32 +17,7 @@ export class AssignementsService {
     })
   };
   
-  assignements: Assignement[] = [
-    // {
-    //   id: 1,
-    //   nom: "Devoir Angular",
-    //   dateDelivery: new Date('2022-10-10'),
-    //   rendered: false
-    // },
-    // {
-    //   id: 2,
-    //   nom: "Devoir Java",
-    //   dateDelivery: new Date('2022-10-10'),
-    //   rendered: true
-    // },
-    // {
-    //   id: 3,
-    //   nom: "Devoir R",
-    //   dateDelivery: new Date('2022-10-10'),
-    //   rendered: false
-    // },
-    // {
-    //   id: 4,
-    //   nom: "Devoir Ocaml",
-    //   dateDelivery: new Date('2022-10-10'),
-    //   rendered: true
-    // },
-  ]
+  assignements: Assignement[] = []
 
   constructor(
     private loggingService: LoggingService,

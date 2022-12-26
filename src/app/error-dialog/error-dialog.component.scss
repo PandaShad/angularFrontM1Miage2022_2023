@@ -1,0 +1,32 @@
+@import '../../styles/index.scss';
+
+main {
+    min-width: 480px;
+    .icon-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 200px;
+        margin: 20px 0 44px;
+
+        .error-icon {
+            color: $tertiary-color;
+            transform: scale(12);
+        }
+    }
+    .error-title {
+        font-family: 'Satoshi-Black';
+        text-align: center;
+    }
+    .mat-dialog-content {
+        font-family: 'Satoshi-Light';
+    }
+    .mat-dialog-actions {
+        justify-content: center;
+        button {
+            width: 50%;
+            background-color: $tertiary-color;
+            color: $button-text-color;
+        }
+    }
+}
