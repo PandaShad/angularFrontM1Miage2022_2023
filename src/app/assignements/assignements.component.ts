@@ -1,9 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AssignementsService } from '../shared/assignements.service';
 import { Assignement } from './assignement.model';
 import {MatTableDataSource} from "@angular/material/table";
-import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
 
 @Component({
@@ -11,15 +10,17 @@ import {MatSort} from "@angular/material/sort";
   templateUrl: './assignements.component.html',
   styleUrls: ['./assignements.component.scss']
 })
-export class AssignementsComponent implements OnInit {
+export class AssignementsComponent implements OnInit, AfterViewInit, OnDestroy {
 
-  displayedColumns: string[] = ['nom', 'auteur', 'matiere'];
+  displayedColumns: string[] = ['nom', 'auteur', 'matiere', 'rendu'];
   dataSource: MatTableDataSource<Assignement>;
-  @ViewChild(MatPaginator) paginator: MatPaginator;
+
   @ViewChild(MatSort) sort: MatSort;
+  sortBy: string = 'nom';
+  sortOrder: number = 1;
 
   page: number = 1;
-  limit: number = 10;
+  limit: number = 2;
   totalDocs: number;
   totalPages: number;
   hasPrevPage: boolean;
@@ -38,9 +39,22 @@ export class AssignementsComponent implements OnInit {
     private router: Router,
   ) { }
 
+  ngOnDestroy(): void {
+    this.sort.sortChange.unsubscribe();
+  }
+
+  ngAfterViewInit(): void {
+    this.sort.sortChange
+      .subscribe((res) => {
+        console.log('Sort =>', res);
+        this.sortBy = res.active;
+        res.direction === 'asc' ? this.sortOrder = 1 : this.sortOrder = -1;
+        this.getDataByPage(this.page, this.limit)
+      })
+  }
+
   ngOnInit(): void {
     this.getDataByPage(this.page, this.limit);
-    // this.getAssignements();
   }
 
   applyFilter(event: Event) {
@@ -77,7 +91,7 @@ export class AssignementsComponent implements OnInit {
   }
 
   getDataByPage(page: number, limit: number) {
-    this.assignementsService.getAssignmentsPagine(page, limit)
+    this.assignementsService.getAssignmentsPagine(page, limit, this.sortBy, this.sortOrder)
       .subscribe(data => {
         this.assignements = data.docs;
         this.page = data.page;
@@ -88,23 +102,16 @@ export class AssignementsComponent implements OnInit {
         this.prevPage = data.prevPage;
         this.hasNextPage = data.hasNextPage;
         this.nextPage = data.nextPage;
-        this.dataSource = new MatTableDataSource(this.assignements);
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
+        // this.dataSource.sort = this.sort;
       });
+  }
+
+  showDetails(assignement: Assignement) {
+    console.log('assignement =>', assignement);
   }
 
   updatePage(event: any) {
     this.getDataByPage(event.pageIndex + 1, event.pageSize);
-  }
-
-  peuplerDB() {
-    console.log('already done');
-    // this.assignementsService.peuplerDb()
-    //   .subscribe(() => {
-    //     console.log('LA BD A ETE PEUPLEE');
-    //     this.router.navigate(["/home"], {replaceUrl: true});
-    //   })
   }
 
 }

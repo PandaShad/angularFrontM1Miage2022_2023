@@ -7,28 +7,27 @@
         <input matInput [(ngModel)]="auteur" name="auteur" placeholder="auteur" required>
       </mat-form-field>
     
-      <mat-form-field appearance="fill">
-        <mat-label>matiere</mat-label>
-        <mat-select [(ngModel)]="matiere" name="matiere">
-          <mat-option *ngFor="let matiere of matieres" [value]="matiere.nom">
-            {{matiere.nom}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>matiere</mat-label>
+      <mat-select [(ngModel)]="subject" name="matiere">
+        <mat-option *ngFor="let matiere of subjectList" [value]="matiere.name">
+          {{matiere.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
     
-      <mat-form-field appearance="fill">
-        <mat-label>note</mat-label>
-        <mat-select [(ngModel)]="note" name="note">
-          <mat-option *ngFor="let note of notes" [value]="note">
-            {{note}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>note</mat-label>
+      <mat-select [(ngModel)]="note" name="note">
+        <mat-option *ngFor="let note of notes" [value]="note">
+          {{note}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
     
-      <mat-form-field class="example-full-width">
-        <mat-label>remarque</mat-label>
-        <textarea matInput placeholder="remarque" [(ngModel)]="remarque" name="remarque"></textarea>
-      </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <input matInput [(ngModel)]="remarque" name="remarque" placeholder="Remarque">
+    </mat-form-field>
 
     <mat-form-field appearance="fill">
         <input 

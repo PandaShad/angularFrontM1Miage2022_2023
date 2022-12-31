@@ -5,6 +5,12 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
+h1 {
+    color: $headline-color;
+}
+p {
+    color: $paragraph-color;
+}
 a {
     color: $main-color;
     text-decoration: none;
@@ -14,6 +20,12 @@ a:hover {
 }
 a:visited {
     color: $tertiary-color;
+}
+
+.text-gradient {
+    background: $background-gradient;
+    background-clip: text;
+    color: transparent;
 }
 
 .form {
@@ -32,5 +44,31 @@ a:visited {
 
     .mat-focused {
         border: 1px solid black;
+    }
+}
+
+.button {
+    border-radius: 5px;
+    width: 188px;
+    height: 48px;
+    font-size: 16px;
+    transition-duration: .15s;
+}
+
+.main-button {
+    color: $button-text-color;
+    background-color: $main-color;
+    &:hover {
+        background-color: $background-color;
+        color: $headline-color;
+    }
+}
+
+.secondary-button {
+    color: $headline-color;
+    background-color: $background-color;
+    &:hover {
+        background: $background-gradient;
+        color: $background-color;
     }
 }

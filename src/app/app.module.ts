@@ -30,9 +30,12 @@ import { AssignementDetailComponent } from './assignements/assignement-detail/as
 import { AddAssignementComponent } from './assignements/add-assignement/add-assignement.component';
 import { EditAssignementComponent } from './edit-assignement/edit-assignement.component';
 import { LoginComponent } from './login/login.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SignupComponent } from './signup/signup.component';
 import { ErrorDialogComponent } from './error-dialog/error-dialog.component';
+import { HomePageComponent } from './home-page/home-page.component';
+import { AuthInterceptorInterceptor } from './shared/auth-interceptor.interceptor';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [
@@ -46,7 +49,8 @@ import { ErrorDialogComponent } from './error-dialog/error-dialog.component';
     EditAssignementComponent,
     LoginComponent,
     SignupComponent,
-    ErrorDialogComponent
+    ErrorDialogComponent,
+    HomePageComponent
   ],
   imports: [
     BrowserModule,
@@ -68,12 +72,19 @@ import { ErrorDialogComponent } from './error-dialog/error-dialog.component';
     MatPaginatorModule,
     MatDialogModule,
     MatTableModule,
+    MatSortModule,
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: AuthInterceptorInterceptor,
+    //   multi: true
+    // }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

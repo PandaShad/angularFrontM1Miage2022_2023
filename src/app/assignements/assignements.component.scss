@@ -42,6 +42,10 @@ h1 {
 
 table {
   width: 100%;
+  tr:hover {
+    background: whitesmoke;
+    cursor: pointer;
+  }
 }
 
 .mat-mdc-form-field {

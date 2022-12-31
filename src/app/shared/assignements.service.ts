@@ -30,10 +30,12 @@ export class AssignementsService {
     // return of(this.assignements);
   }
 
-  getAssignmentsPagine(page: number, limit: number): Observable<any> {
+  getAssignmentsPagine(page: number, limit: number, sortBy: string, sortOrder: number): Observable<any> {
     const queryParams = {
       page: page,
-      limit: limit
+      limit: limit,
+      sortBy: sortBy,
+      sortOrder: sortOrder,
     }
     return this.http.get<any>(this.uri,{params: queryParams});
   }

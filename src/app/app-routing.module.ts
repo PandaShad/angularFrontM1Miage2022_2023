@@ -4,6 +4,7 @@ import { AddAssignementComponent } from './assignements/add-assignement/add-assi
 import { AssignementDetailComponent } from './assignements/assignement-detail/assignement-detail.component';
 import { AssignementsComponent } from './assignements/assignements.component';
 import { EditAssignementComponent } from './edit-assignement/edit-assignement.component';
+import { HomePageComponent } from './home-page/home-page.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './shared/auth.guard';
 import { SignupComponent } from './signup/signup.component';
@@ -11,7 +12,7 @@ import { SignupComponent } from './signup/signup.component';
 const routes: Routes = [
   {
     path: '', 
-    component: AssignementsComponent,
+    component: HomePageComponent,
   },
   {
     path: 'home', 

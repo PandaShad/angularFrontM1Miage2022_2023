@@ -1,7 +1,9 @@
 import { Injectable } from "@angular/core";
+import * as moment from "moment";
 
 const TOKEN_KEY = 'auth-token';
 const USER_KEY = 'auth-user';
+const EXPIRES_AT = 'auth-expiresAt'
 
 @Injectable({
     providedIn: 'root'
@@ -14,9 +16,11 @@ export class TokenStorageService {
         localStorage.clear();
     }
 
-    saveToken(token: string): void {
+    saveToken(token: string, expiresIn: number): void {
+        const expiresAt = moment().add(expiresIn, 'second');
         localStorage.removeItem(TOKEN_KEY);
         localStorage.setItem(TOKEN_KEY, token);
+        localStorage.setItem(EXPIRES_AT, expiresAt.valueOf().toString());
     }
 
     getToken(): string | null {
@@ -34,5 +38,14 @@ export class TokenStorageService {
           return JSON.parse(user);
         }
         return {};
+    }
+
+    isLoggedIn(): boolean {
+        return moment().isBefore(this.getExpiration());
+    }
+
+    getExpiration() {
+        const expiration = localStorage.getItem(EXPIRES_AT)!;
+        return moment(JSON.parse(expiration));
     }
 }

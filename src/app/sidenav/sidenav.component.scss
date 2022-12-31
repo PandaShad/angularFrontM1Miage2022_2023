@@ -14,3 +14,7 @@
   flex-direction: column;
   justify-content: space-evenly;
 }
+
+.mat-sidenav-content{
+  min-height: calc(100vh - 64px);
+}

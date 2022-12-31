@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit {
       )
       .subscribe(response => {
         console.log('res => ', response);
-        this.tokenService.saveToken(response.token);
+        this.tokenService.saveToken(response.token, response.expiresIn);
         this.tokenService.saveUser(response.user);
         this.router.navigate(['/'])
       })
