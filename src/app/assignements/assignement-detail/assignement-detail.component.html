@@ -1,5 +1,52 @@
-<div class="container">
-    <mat-card *ngIf="assignement">
+<main class="container">
+    <mat-spinner *ngIf="!loaded" [color]="'#123213'"></mat-spinner>
+    <div class="details-container" *ngIf="loaded">
+        <h1 class="assignement-title">{{ assignement.nom }}</h1>
+        <div class="details-content">
+            <div class="left-side">
+                <h2>Remarques</h2>
+                <p>{{ (assignement.remarque ? assignement.remarque : 'Aucune remarques') }}</p>
+                <h2>Détails du devoir</h2>
+                <div class="more-details">
+                    <div>
+                        <h3>Date de rendu</h3>
+                        <p>{{assignement.dateDeRendu | date: 'MMM d, y'}}</p>
+                    </div>
+                    <div>
+                        <h3>Status</h3>
+                        <p>{{assignement.rendu}}</p>
+                    </div>
+                    <div>
+                        <h3>Note</h3>
+                        <p>{{assignement.note}}/20</p>
+                    </div>
+                </div>
+                <div class="action-buttons">
+                    <button
+                        mat-stroked-button
+                        (click)="onClickEdit()"
+                        class="main-button"> Edit
+                    </button>
+                    <button 
+                        mat-flat-button
+                        class="secondary-button" 
+                        (click)="onDeleteButtonClick()"> Delete
+        </button>
+                </div>
+            </div>
+            <div class="right-side">
+                <img src="{{subject.image}}"/>
+                <h2>Détails de la matiere</h2>
+                <p>{{ (subject.description ? subject.description : 'Aucune description') }}</p>
+                <div class="subject-tags">
+                    <p>Professeur: {{subject.teacher}}</p>
+                    <p>ECTS: {{subject.credits}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <mat-card *ngIf="assignement">
         <mat-card-title>{{ assignement.nom }}</mat-card-title>
         <mat-card-subtitle>{{ assignement.dateDeRendu | date }}</mat-card-subtitle>
         <mat-checkbox
@@ -23,5 +70,5 @@
             color="warn"
             (click)="onDeleteButtonClick()"> Delete
         </button>
-    </mat-card>
-</div>
+    </mat-card> -->
+</main>

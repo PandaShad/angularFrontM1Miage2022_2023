@@ -4,6 +4,7 @@ import { AssignementsService } from '../shared/assignements.service';
 import { Assignement } from './assignement.model';
 import {MatTableDataSource} from "@angular/material/table";
 import {MatSort} from "@angular/material/sort";
+import { IFilterParam } from '../shared/types';
 
 @Component({
   selector: 'app-assignements',
@@ -12,12 +13,16 @@ import {MatSort} from "@angular/material/sort";
 })
 export class AssignementsComponent implements OnInit, AfterViewInit, OnDestroy {
 
-  displayedColumns: string[] = ['nom', 'auteur', 'matiere', 'rendu'];
+  filterEnum: typeof IFilterParam = IFilterParam;
+
+  displayedColumns: string[] = ['nom', 'auteur', 'matiere','rendu', 'dateDeRendu'];
   dataSource: MatTableDataSource<Assignement>;
 
   @ViewChild(MatSort) sort: MatSort;
   sortBy: string = 'nom';
   sortOrder: number = 1;
+
+  filter: IFilterParam = IFilterParam.NO_FILTER;
 
   page: number = 1;
   limit: number = 2;
@@ -59,6 +64,7 @@ export class AssignementsComponent implements OnInit, AfterViewInit, OnDestroy {
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
+    console.log(this.dataSource);
     this.dataSource.filter = filterValue.trim().toLowerCase();
 
     if (this.dataSource.paginator) {
@@ -91,7 +97,7 @@ export class AssignementsComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   getDataByPage(page: number, limit: number) {
-    this.assignementsService.getAssignmentsPagine(page, limit, this.sortBy, this.sortOrder)
+    this.assignementsService.getAssignmentsPagine(page, limit, this.sortBy, this.sortOrder, this.filter)
       .subscribe(data => {
         this.assignements = data.docs;
         this.page = data.page;
@@ -106,8 +112,9 @@ export class AssignementsComponent implements OnInit, AfterViewInit, OnDestroy {
       });
   }
 
-  showDetails(assignement: Assignement) {
-    console.log('assignement =>', assignement);
+  filterByStatus(filter: IFilterParam) {
+    this.filter = filter;
+    this.getDataByPage(this.page, this.limit);
   }
 
   updatePage(event: any) {

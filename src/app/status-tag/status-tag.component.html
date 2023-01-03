@@ -1,0 +1,14 @@
+<div *ngIf="assignement.rendu" class="status-tag returned">
+    <i class="highlight returned"></i>
+    <p class="status-tag__txt bac-l-stack-xs">Rendu !</p>
+</div>
+
+<div *ngIf="!assignement.rendu && !isLate" class="status-tag not-returned-warning">
+    <i class="highlight not-returned-warning"></i>
+    <p class="status-tag__txt bac-l-stack-xs">À rendre.</p>
+</div>
+
+<div *ngIf="!assignement.rendu && isLate" class="status-tag delay-danger">
+    <i class="highlight delay-danger"></i>
+    <p class="status-tag__txt bac-l-stack-xs">En retard !</p>
+</div>

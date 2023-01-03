@@ -1,0 +1,47 @@
+.status-tag {
+    width: auto;
+    display: inline-flex;
+    height: 24px;
+    padding: 0 10px 0 5px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 13px;
+
+    .status-tag__txt {
+        margin: 0;
+        padding: 0 12px;
+        display: inline-flex;
+        flex: 0 0 auto;
+    }
+
+    .highlight {
+        position: relative;
+        display: inline-flex;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+    }
+    .returned {
+        background-color: #00ebc7;
+    }
+    
+    .not-returned-warning {
+        background-color: #faae2b;
+    }
+    
+    .delay-danger {
+        background-color: #ef4565;
+    }
+  }
+  
+.returned {
+    background: RGBA(0, 235, 199, 0.07);
+}
+
+.not-returned-warning {
+    background: RGBA(250, 174, 43, 0.07);
+}
+
+.delay-danger {
+    background: RGBA(239, 69, 101, 0.07);
+}

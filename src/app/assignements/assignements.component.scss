@@ -3,6 +3,9 @@
     flex-direction: column;
     margin-top: 80px;
     padding: 0 10%;
+    .table_container {
+      height: 80vh;
+    }
 }
 
 .addButton {
@@ -59,7 +62,7 @@ td, th {
 
 .mat-elevation-z8 {
   width: 100%;
-  height: 480px;
+  height: 100%;
   overflow: auto;
 }
 

@@ -1,0 +1,61 @@
+@import '../../../styles/index.scss';
+
+.container {
+    display: flex;
+    justify-content: center;
+    min-height: calc(100vh - 64px);
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    .mat-spinner {
+        stroke: $main-color;
+        margin-top: 200px;
+    }
+
+    .details-container {
+        width: 1200px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .assignement-title {
+            font-size: 64px;
+        }
+        .details-content{
+            display: flex;
+            flex-direction: row;
+            gap: 70px;
+            .left-side {
+                display: flex;
+                flex-direction: column;
+                min-width: 50%;
+                .more-details {
+                    display: flex;
+                    justify-content: space-between;
+                }
+                .action-buttons {
+                    margin-top: auto;
+                    display: flex;
+                    gap: 20px;
+                    button {
+                        width: 200px;
+                    }
+                }
+            }
+            .right-side {
+                img {
+                    max-width: 400px;
+                }
+                .subject-tags {
+                    display: flex;
+                    gap: 12px;
+                    p {
+                        background-color: black;
+                        color: $button-text-color;
+                        border-radius: 13px;
+                        padding: 0 12px;
+                    }
+                }
+            }
+        }
+    }
+}

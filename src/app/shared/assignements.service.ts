@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Assignement } from '../assignements/assignement.model';
-import { catchError, forkJoin, map, Observable, of, tap } from 'rxjs';
+import { catchError, first, forkJoin, map, Observable, of, tap } from 'rxjs';
 import { LoggingService } from './logging.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { IFilterParam } from './types';
 
 @Injectable({
   providedIn: 'root'
@@ -30,12 +31,13 @@ export class AssignementsService {
     // return of(this.assignements);
   }
 
-  getAssignmentsPagine(page: number, limit: number, sortBy: string, sortOrder: number): Observable<any> {
+  getAssignmentsPagine(page: number, limit: number, sortBy: string, sortOrder: number, returned: IFilterParam): Observable<any> {
     const queryParams = {
       page: page,
       limit: limit,
       sortBy: sortBy,
       sortOrder: sortOrder,
+      returned: returned
     }
     return this.http.get<any>(this.uri,{params: queryParams});
   }
@@ -64,16 +66,9 @@ export class AssignementsService {
   }
 
   getAssignementById(id: number): Observable<Assignement> {
-    // return of(this.assignements.find(assignement => assignement.id === id) as Assignement);
-    return  this.http.get<Assignement>(this.uri + '/' + id)
-      .pipe(map(a => {
-        a.nom += ' transformé avec un pipe....';
-        return a;
-      }),
-      tap(_ => {
-        console.log(`tap: assignement id = ${id} requête GET envoyée sur mongoDB cloud`);
-      }),
-      catchError(this.handleError<any>('### catchError: getAssignments by id avec id=' + id)));
+    return this.http.get<Assignement>(`${this.uri}/${id}`)
+      .pipe(catchError(this.handleError<any>('### catchError: getAssignments by id avec id=' + id)),
+      tap(_ => console.log(`tap : assignement id = ${id} requête GET envoyée sur mongoDB cloud`)));
   }
 
   private handleError<T>(operation: any, result?: T) {

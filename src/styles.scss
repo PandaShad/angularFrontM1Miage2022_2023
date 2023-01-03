@@ -3,13 +3,14 @@
 @import './styles/index.scss';
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: 'Satoshi-Black'; }
 
 h1 {
     color: $headline-color;
 }
 p {
     color: $paragraph-color;
+    font-family: 'Satoshi-Medium';
 }
 a {
     color: $main-color;

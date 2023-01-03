@@ -24,6 +24,10 @@ export class SubjectService {
     return this.http.get<any>(this.uri);
   }
 
+  getSubjectByName(name: string): Observable<any> {
+    return this.http.get<any>(`${this.uri}${name}`);
+  }
+
   addSubject(subject: Subject): Observable<any> {
     return this.http.post<Subject>(this.uri, subject,this.httpOptions)
   }

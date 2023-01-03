@@ -24,6 +24,9 @@ import {MatSelectModule} from "@angular/material/select";
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatProgressSpinnerModule, MatSpinner } from '@angular/material/progress-spinner';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { AssignementDetailComponent } from './assignements/assignement-detail/assignement-detail.component';
@@ -36,6 +39,7 @@ import { ErrorDialogComponent } from './error-dialog/error-dialog.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { AuthInterceptorInterceptor } from './shared/auth-interceptor.interceptor';
 import { MatSortModule } from '@angular/material/sort';
+import { StatusTagComponent } from './status-tag/status-tag.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +54,8 @@ import { MatSortModule } from '@angular/material/sort';
     LoginComponent,
     SignupComponent,
     ErrorDialogComponent,
-    HomePageComponent
+    HomePageComponent,
+    StatusTagComponent
   ],
   imports: [
     BrowserModule,
@@ -73,6 +78,9 @@ import { MatSortModule } from '@angular/material/sort';
     MatDialogModule,
     MatTableModule,
     MatSortModule,
+    MatMenuModule,
+    MatChipsModule,
+    MatProgressSpinnerModule,
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
