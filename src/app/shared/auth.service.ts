@@ -19,7 +19,7 @@ export class AuthService {
   };
 
   user: User | null;
-  uri = "http://localhost:8010/api/auth";
+  uri = "https://projet-angular-backend.herokuapp.com/api/auth";
 
   loggedIn: boolean = false;
 

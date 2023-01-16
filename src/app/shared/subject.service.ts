@@ -18,7 +18,7 @@ export class SubjectService {
     private http: HttpClient
   ) { }
 
-  uri = "http://localhost:8010/api/subjects/"
+  uri = "https://projet-angular-backend.herokuapp.com/api/subjects/"
 
   getSubjects(): Observable<any> {
     return this.http.get<any>(this.uri);

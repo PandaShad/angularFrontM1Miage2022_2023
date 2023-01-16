@@ -23,7 +23,7 @@ export class AssignementsService {
     private http: HttpClient,
   ) { }
 
-  uri = "http://localhost:8010/api/assignments";
+  uri = "https://projet-angular-backend.herokuapp.com/api/assignments";
   // uri = "https://api-cours-angular-2022.herokuapp.com/api/assignments";
 
   getAssignements(): Observable<any> {
