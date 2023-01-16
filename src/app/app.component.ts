@@ -31,8 +31,9 @@ export class AppComponent {
         }
       });
   }
-  
+
   logOut(): void {
     this.authService.logOut()
+    window.location.reload();
   }
 }
