@@ -50,7 +50,8 @@ export class LoginComponent implements OnInit {
         console.log('res => ', response);
         this.tokenService.saveToken(response.token, response.expiresIn);
         this.tokenService.saveUser(response.user);
-        this.router.navigate(['/'])
+        window.location.reload();
+        this.router.navigate(['/']);
       })
   }
 
