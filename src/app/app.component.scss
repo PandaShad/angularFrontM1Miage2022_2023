@@ -13,6 +13,14 @@ mat-toolbar {
 .connection-icon {
   position: absolute;
   right: 80px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  .mat-icon {
+    &:hover {
+      cursor: pointer;
+    }
+  }
 }
 
 button {

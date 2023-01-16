@@ -15,7 +15,7 @@ export class StatusTagComponent implements OnInit {
 
   ngOnInit(): void {
     if(!this.assignement.rendu){
-      this.isLate = (this.assignement.dateDeRendu > new Date());
+      this.isLate = (new Date(this.assignement.dateDeRendu) < new Date());
     }
   }
 }

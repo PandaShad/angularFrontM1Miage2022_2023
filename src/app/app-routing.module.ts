@@ -7,6 +7,7 @@ import { EditAssignementComponent } from './edit-assignement/edit-assignement.co
 import { HomePageComponent } from './home-page/home-page.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './shared/auth.guard';
+import { NotLoggedInGuard } from './shared/not-logged-in.guard';
 import { SignupComponent } from './signup/signup.component';
 
 const routes: Routes = [
@@ -15,16 +16,19 @@ const routes: Routes = [
     component: HomePageComponent,
   },
   {
-    path: 'home', 
+    path: 'assignements', 
     component: AssignementsComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'add', 
     component: AddAssignementComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'assignement/:id', 
     component: AssignementDetailComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'assignement/:id/edit', 
@@ -33,11 +37,13 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    component: LoginComponent
+    component: LoginComponent,
+    canActivate: [NotLoggedInGuard]
   },
   {
     path: 'signup',
-    component: SignupComponent
+    component: SignupComponent,
+    canActivate: [NotLoggedInGuard]
   }
 ]
 

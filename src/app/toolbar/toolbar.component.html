@@ -1,11 +1,13 @@
 <mat-toolbar>
-    <button routerLink="/home" class="home-icon" aria-label="home-button with menu icon">
+    <button routerLink="/" class="home-icon" aria-label="home-button with menu icon">
         <mat-icon>home</mat-icon>
     </button>
     <span>Assignements App</span>
-    <button mat-icon-button class="connection-icon" aria-label="connection-button with heart icon">
+    <button *ngIf="!isLogin" mat-icon-button class="connection-icon" aria-label="connection-button with heart icon">
         <mat-icon>face</mat-icon>
         <span>Connection</span>
     </button>
-    <mat-slide-toggle (click)="login()"></mat-slide-toggle>
+    <div *ngIf="isLogin" mat-icon-button class="connection-icon" aria-label="connection-button with heart icon">
+        <mat-icon>face</mat-icon>
+    </div>
 </mat-toolbar>

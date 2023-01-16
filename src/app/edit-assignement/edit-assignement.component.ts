@@ -12,6 +12,8 @@ export class EditAssignementComponent implements OnInit {
  assignment!: Assignement | undefined;
  nomAssignment!: string;
  dateDeRendu!: Date;
+ remarques: string;
+ note: number;
 
  constructor(
    private assignmentsService: AssignementsService,
@@ -37,6 +39,8 @@ export class EditAssignementComponent implements OnInit {
     // Pour pré-remplir le formulaire
     this.nomAssignment = assignment.nom;
     this.dateDeRendu = assignment.dateDeRendu;
+    this.remarques = assignment.remarque;
+    this.note = assignment.note
   });
 }
 onSaveAssignment() {
@@ -45,13 +49,15 @@ onSaveAssignment() {
   // on récupère les valeurs dans le formulaire
   this.assignment.nom = this.nomAssignment;
   this.assignment.dateDeRendu = this.dateDeRendu;
+  this.assignment.remarque = this.remarques;
+  this.assignment.note = this.assignment.note;
   this.assignmentsService
     .updateAssignement(this.assignment)
     .subscribe((message) => {
       console.log(message);
 
       // navigation vers la home page
-      this.router.navigate(['/home']);
+      this.router.navigate(['/assignements']);
     });
 }
 }

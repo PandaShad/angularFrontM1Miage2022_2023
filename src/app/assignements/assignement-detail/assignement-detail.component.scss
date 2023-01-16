@@ -1,5 +1,12 @@
 @import '../../../styles/index.scss';
 
+::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background {
+    background-color: $main-color;
+}
+.mat-checkbox {
+    display: flex;
+    align-items: center;
+}
 .container {
     display: flex;
     justify-content: center;
@@ -10,6 +17,15 @@
     .mat-spinner {
         stroke: $main-color;
         margin-top: 200px;
+    }
+    .back-arrow {
+        position: absolute;
+        top: 20px;
+        right: 40px;
+        scale: 2;
+        &:hover {
+            cursor: pointer;
+        }
     }
 
     .details-container {

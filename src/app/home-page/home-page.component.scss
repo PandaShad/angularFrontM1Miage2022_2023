@@ -1,6 +1,9 @@
 @import '../../styles/index.scss';
 
 main {
+    button {
+        margin: 0 10px;
+    }
     box-sizing: border-box;
     .home-page-content {
         max-width: 100%;

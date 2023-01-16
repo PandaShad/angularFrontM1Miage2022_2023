@@ -27,8 +27,7 @@ export class SignupComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private dialog: MatDialog,
-    private formBuilder: FormBuilder
+    private dialog: MatDialog
   ) { }
 
   ngOnInit(): void {

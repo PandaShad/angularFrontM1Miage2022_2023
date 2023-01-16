@@ -1,4 +1,91 @@
-<form ngForm #assignementForm class="form">
+<mat-stepper linear #stepper (selectionChange)="onStepChange($event)">
+  <mat-step [stepControl]="firstFormGroup" errorMessage="Name is required.">
+    <form [formGroup]="firstFormGroup">
+      <ng-template matStepLabel>Détails du devoir</ng-template>
+      <mat-form-field appearance="fill">
+        <mat-label>Nom du devoir</mat-label>
+        <input matInput placeholder="Angular" formControlName="name" required>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Matière</mat-label>
+        <mat-select formControlName="subject" name="matiere">
+          <mat-option *ngFor="let matiere of subjectList" [value]="matiere.name">
+            {{matiere.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup" errorMessage="Address is required.">
+    <form [formGroup]="secondFormGroup">
+      <ng-template matStepLabel>Indiquer la date de rendu</ng-template>
+      <mat-form-field appearance="fill">
+        <input 
+            matInput
+            [matDatepicker]="picker"
+            placeholder="Date de rendu"
+            name="date"
+            formControlName="date" 
+            required>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Vérification</ng-template>
+    <div class="container">
+      <div class="details-container">
+        <h1 class="assignement-title">{{ firstFormGroup.value.name }}</h1>
+        <div class="details-content">
+          <div class="left-side">
+            <h2>Détails du devoir</h2>
+            <div class="more-details">
+              <div>
+                <h3>Date de rendu</h3>
+                <p>{{secondFormGroup.value.date | date: 'MMM d, y'}}</p>
+              </div>
+              <div>
+                <h3>Status</h3>
+                <p>'Devoir non rendu</p>
+              </div>
+            </div>
+            <div class="action-buttons">
+              <button
+                  mat-stroked-button
+                  (click)="addAssignement()"
+                  class="main-button"> Ajouter
+              </button>
+              <button 
+                  mat-flat-button
+                  class="secondary-button" 
+                  (click)="stepper.reset()"> Annuler
+              </button>
+            </div>
+          </div>
+          <div *ngIf="subjectInfoLoaded" class="right-side">
+            <img src="{{subject.image}}"/>
+            <h2>Détails de la matiere</h2>
+            <p>{{ (subject.description ? subject.description : 'Aucune description') }}</p>
+            <div class="subject-tags">
+                <p>Professeur: {{subject.teacher}}</p>
+                <p>ECTS: {{subject.credits}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-step>
+</mat-stepper>
+
+<!-- <form ngForm #assignementForm class="form">
     <mat-form-field>
         <input matInput [(ngModel)]="assignementName" name="name" placeholder="Nom du devoir" required>
     </mat-form-field>
@@ -42,8 +129,8 @@
     <button
         mat-stroked-button
         (click)="onSubmit(); assignementForm.reset()"
-        routerLink="/home"
+        routerLink="/assignements"
     >
         Ajouter un devoir
     </button>
-</form>
+</form> -->

@@ -26,7 +26,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatChipsModule } from '@angular/material/chips';
-import { MatProgressSpinnerModule, MatSpinner } from '@angular/material/progress-spinner';
+import { MatStepperModule} from '@angular/material/stepper';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { AssignementDetailComponent } from './assignements/assignement-detail/assignement-detail.component';
@@ -80,6 +81,7 @@ import { StatusTagComponent } from './status-tag/status-tag.component';
     MatSortModule,
     MatMenuModule,
     MatChipsModule,
+    MatStepperModule,
     MatProgressSpinnerModule,
     FormsModule,
     ReactiveFormsModule,
@@ -87,11 +89,11 @@ import { StatusTagComponent } from './status-tag/status-tag.component';
     HttpClientModule,
   ],
   providers: [
-    // {
-    //   provide: HTTP_INTERCEPTORS,
-    //   useClass: AuthInterceptorInterceptor,
-    //   multi: true
-    // }
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

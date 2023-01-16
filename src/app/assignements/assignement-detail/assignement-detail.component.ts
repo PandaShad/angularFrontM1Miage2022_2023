@@ -48,21 +48,11 @@ export class AssignementDetailComponent implements OnInit {
       });
   }
 
-  onAssignementRendered(): void {
-    // this.assignement.dateDelivery = new Date();
-    this.assignement.rendu = true;
-    this.assignementsService.updateAssignement(this.assignement)
-      .subscribe(message => {
-        console.log(message);
-        this.router.navigate(['/home']);
-      });
-  }
-
   onDeleteButtonClick(): void {
     this.assignementsService.deleteAssignement(this.assignement)
       .subscribe(message => {
         console.log(message);
-        this.router.navigate(['/home']);
+        this.router.navigate(['/assignements']);
       });
   }
 
@@ -72,6 +62,15 @@ export class AssignementDetailComponent implements OnInit {
 
   isAdmin(): boolean {
     return this.authService.loggedIn;
+  }
+
+  setRendu(event: boolean) {
+    this.assignement.rendu = event;
+    this.assignementsService.updateAssignement(this.assignement)
+      .subscribe(message => {
+        console.log(message);
+        this.router.navigate(['/assignements']);
+      });
   }
 
 }

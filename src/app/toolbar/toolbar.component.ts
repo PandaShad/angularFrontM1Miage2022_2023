@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { first } from 'rxjs';
 import { AuthService } from '../shared/auth.service';
-import { SideNavService } from '../shared/sidenav.service';
+import { User } from '../shared/user.model';
 
 @Component({
   selector: 'app-toolbar',
@@ -10,22 +11,22 @@ import { SideNavService } from '../shared/sidenav.service';
 })
 export class ToolbarComponent implements OnInit {
 
+  isLogin: boolean = false;
+  user: User;
+
   constructor(
     private router: Router,
     private authService: AuthService
   ) { }
 
   ngOnInit(): void {
+    this.authService.isLoggedIn$
+      .subscribe(res =>{
+        this.isLogin = res
+        console.log(this.isLogin)
+        if(this.isLogin){
+          console.log(localStorage.getItem('auth-user'))
+        }
+      });
   }
-
-  login() {
-    // if(!this.authService.loggedIn) {
-    //   this.authService.logIn();
-    // } else {
-    //   this.authService.logOut();
-    //   this.router.navigate(['/home']);
-    // }
-    // console.log(this.authService.loggedIn)
-  }
-
 }

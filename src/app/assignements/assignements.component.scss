@@ -1,15 +1,22 @@
 .container {
+    min-height: calc(100vh - 64px);
     display: flex;
     flex-direction: column;
-    margin-top: 80px;
     padding: 0 10%;
+    .table_actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+    }
     .table_container {
-      height: 80vh;
+      height: 70vh;
     }
 }
 
 .addButton {
-    align-self: flex-end;
+    align-self: flex-start;
+    margin-top: 20px;
 }
 
 .rendu {

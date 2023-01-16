@@ -15,24 +15,24 @@ export class SidenavComponent implements OnInit {
 
   navLinks: NavLinks[] = [
     {
-      nom: "Liste des devoirs",
+      nom: "Home",
       link: '/',
+    },
+    {
+      nom: "Login",
+      link: '/login',
+    },
+    {
+      nom: "Sign Up",
+      link: '/signup',
+    },
+    {
+      nom: "Liste des devoirs",
+      link: '/assignements',
     },
     {
       nom: "Ajout d'un devoir",
-      link: '/',
-    },
-    {
-      nom: "Modification d'un devoir",
-      link: '/',
-    },
-    {
-      nom: "Suppression d'un devoir",
-      link: '/',
-    },
-    {
-      nom: "Génération de données de test",
-      link: '/',
+      link: '/add',
     },
   ]
 
@@ -46,7 +46,6 @@ export class SidenavComponent implements OnInit {
 
   naviguateTo(link: string): void {
     this.router.navigateByUrl(link);
-    console.log('Will naviguate to', link);
   }
 
   toggle(): void {

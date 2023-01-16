@@ -1,39 +1,30 @@
-import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AssignementsService } from '../shared/assignements.service';
 import { Assignement } from './assignement.model';
 import {MatTableDataSource} from "@angular/material/table";
 import {MatSort} from "@angular/material/sort";
 import { IFilterParam } from '../shared/types';
+import { MatPaginator } from '@angular/material/paginator';
+import { first } from 'rxjs';
 
 @Component({
   selector: 'app-assignements',
   templateUrl: './assignements.component.html',
   styleUrls: ['./assignements.component.scss']
 })
-export class AssignementsComponent implements OnInit, AfterViewInit, OnDestroy {
+export class AssignementsComponent implements OnInit {
+
+
+  dataSource: MatTableDataSource<Assignement>;
+  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   filterEnum: typeof IFilterParam = IFilterParam;
 
   displayedColumns: string[] = ['nom', 'auteur', 'matiere','rendu', 'dateDeRendu'];
-  dataSource: MatTableDataSource<Assignement>;
 
-  @ViewChild(MatSort) sort: MatSort;
-  sortBy: string = 'nom';
-  sortOrder: number = 1;
-
-  filter: IFilterParam = IFilterParam.NO_FILTER;
-
-  page: number = 1;
-  limit: number = 2;
-  totalDocs: number;
-  totalPages: number;
-  hasPrevPage: boolean;
-  prevPage: number;
-  hasNextPage: boolean;
-  nextPage: number;
-
-  activeAssignement: Assignement;
+  filterRendu: IFilterParam = IFilterParam.NO_FILTER;
 
   assignements: Assignement[];
 
@@ -44,32 +35,22 @@ export class AssignementsComponent implements OnInit, AfterViewInit, OnDestroy {
     private router: Router,
   ) { }
 
-  ngOnDestroy(): void {
-    this.sort.sortChange.unsubscribe();
-  }
-
-  ngAfterViewInit(): void {
-    this.sort.sortChange
-      .subscribe((res) => {
-        console.log('Sort =>', res);
-        this.sortBy = res.active;
-        res.direction === 'asc' ? this.sortOrder = 1 : this.sortOrder = -1;
-        this.getDataByPage(this.page, this.limit)
-      })
-  }
-
   ngOnInit(): void {
-    this.getDataByPage(this.page, this.limit);
+    this.assignementsService.getAssignements()
+      .pipe(first())
+      .subscribe(res => {
+        this.dataSource = new MatTableDataSource<Assignement>(res);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+      })
   }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
-    console.log(this.dataSource);
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
+    this.dataSource.filterPredicate = (data: Assignement, filter: string) => {
+      return data.nom.toLowerCase().indexOf(filter) !== -1;
     }
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
   getAssignements(){
@@ -79,46 +60,19 @@ export class AssignementsComponent implements OnInit, AfterViewInit, OnDestroy {
       });
   };
 
-  selectAssignement(assignement: Assignement): void {
-    this.activeAssignement = assignement;
-    console.log(this.activeAssignement);
-  }
-
-  // onNewAssignement(event: Assignement) {
-  //   // this.assignements.push(event);
-  //   this.assignementsService.addAssignement(event)
-  //     .subscribe(message => console.log(message))
-  // }
-
   deleteAssignement(event: Assignement) {
-    // this.assignements = this.assignements.filter((e) => e != event);
     this.assignementsService.deleteAssignement(event)
       .subscribe(message => console.log(message));
   }
 
-  getDataByPage(page: number, limit: number) {
-    this.assignementsService.getAssignmentsPagine(page, limit, this.sortBy, this.sortOrder, this.filter)
-      .subscribe(data => {
-        this.assignements = data.docs;
-        this.page = data.page;
-        this.limit = data.limit;
-        this.totalDocs = data.totalDocs;
-        this.totalPages = data.totalPages;
-        this.hasPrevPage = data.hasPrevPage;
-        this.prevPage = data.prevPage;
-        this.hasNextPage = data.hasNextPage;
-        this.nextPage = data.nextPage;
-        // this.dataSource.sort = this.sort;
-      });
+  filterByStatus(filterValue: IFilterParam) {
+    if(filterValue !== IFilterParam.NO_FILTER){
+      this.dataSource.filterPredicate = (data: Assignement, filter: string) => {
+        return data.rendu === (filter === IFilterParam.RETURNED_ONLY);
+      }
+      this.dataSource.filter = filterValue;
+    } else {
+      this.dataSource.filter = '';
+    }
   }
-
-  filterByStatus(filter: IFilterParam) {
-    this.filter = filter;
-    this.getDataByPage(this.page, this.limit);
-  }
-
-  updatePage(event: any) {
-    this.getDataByPage(event.pageIndex + 1, event.pageSize);
-  }
-
 }
